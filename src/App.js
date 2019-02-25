@@ -58,9 +58,7 @@ class App extends Component {
               </Form>
             </Navbar>
             <Switch>
-              <Row>
-                <Route exact path='/results' component={Results} />
-              </Row>
+              <Route exact path='/results' component={Results} />
               <Route exact path='/details/:id' component={Details} />
               <Route exact path='/results/:query' component={Results} />
             </Switch>

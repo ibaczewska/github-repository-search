@@ -9,7 +9,6 @@ class Results extends Component {
   }
 
   render() {
-    var element = null
     var repositoryName = this.props.match.params.query.toLowerCase()
     if (repositoryName !== this.state.query) {
       this.setState({ query: repositoryName })
@@ -29,35 +28,31 @@ class Results extends Component {
           })
         })
         .catch(error => console.log(error))
-
-      element = this.state.repositories.map(repository => (
-        <div key={repository.id}>
-          <Col md='6' lg='3'>
-            <img src={`${repository.owner.avatar_url}`} title='avatar' alt='' />
-            <h5>
-              Name of repo: {``}
-              <a href={`${repository.html_url}`}>{`${repository.name}`}</a>
-            </h5>
-            <h5>Owner:{`${repository.owner.login}`}</h5>
-            <p>
-              Stars: {``}
-              {`${repository.stargazers_count}`}
-            </p>
-            <p>
-              Language:{``}
-              {`${repository.language}`}
-            </p>
-
-            <Link to={`/details/${repository.id}`}>
-              <Button>Show Details</Button>
-            </Link>
-          </Col>
-          {/* <Button onClick={this.props.history.goBack}>back</Button> */}
-        </div>
-      ))
     }
-
-    return <div>{element}</div>
+    return this.state.repositories.map(repository => (
+      <div key={repository.id}>
+        <Col md='6' lg='3'>
+          <img src={`${repository.owner.avatar_url}`} title='avatar' alt='' />
+          <h5>
+            Name of repo: {``}
+            <a href={`${repository.html_url}`}>{`${repository.name}`}</a>
+          </h5>
+          <h5>Owner:{`${repository.owner.login}`}</h5>
+          <p>
+            Stars: {``}
+            {`${repository.stargazers_count}`}
+          </p>
+          <p>
+            Language:{``}
+            {`${repository.language}`}
+          </p>
+          <Link to={`/details/${repository.id}`}>
+            <Button>Show Details</Button>
+          </Link>
+        </Col>
+        {/* <Button onClick={this.props.history.goBack}>back</Button> */}
+      </div>
+    ))
   }
 }
 
