@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Results from './components/Results'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Details from './components/Details'
 import logo from '../src/assets/GitHub-icon.png'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Row, Navbar, Form, FormControl } from 'react-bootstrap'
 
 class App extends Component {
   state = {
@@ -29,29 +30,43 @@ class App extends Component {
   }
   render() {
     return (
-      <div className='App'>
+      <Container fluid={true}>
         <Router>
           <div>
-            <img src={logo} alt='logo' />
-            <p>Repository Search</p>
-            <input
-              onChange={event => this.handleInputChange(event)}
-              onKeyPress={event => this.keyPress(event)}
-            />
-            <Link to={'/results/' + this.state.query}>
-              <button onClick={this.handleClickChange}>
-                Search repository
-              </button>
-            </Link>
-
+            <Navbar bg='light' expand='lg'>
+              <img src={logo} alt='logo' title='logo' />
+              <Navbar.Brand href='/'>
+                {' '}
+                <h6>Repository Search</h6>
+              </Navbar.Brand>
+              <Form inline>
+                <FormControl
+                  type='text'
+                  placeholder='Search'
+                  className='mr-sm-2'
+                  onChange={event => this.handleInputChange(event)}
+                  onKeyPress={event => this.keyPress(event)}
+                />
+                <Link to={'/results/' + this.state.query}>
+                  <Button
+                    variant='outline-success'
+                    onClick={this.handleClickChange}
+                  >
+                    Search repository
+                  </Button>
+                </Link>
+              </Form>
+            </Navbar>
             <Switch>
-              <Route exact path='/results' component={Results} />
+              <Row>
+                <Route exact path='/results' component={Results} />
+              </Row>
               <Route exact path='/details/:id' component={Details} />
               <Route exact path='/results/:query' component={Results} />
             </Switch>
           </div>
         </Router>
-      </div>
+      </Container>
     )
   }
 }

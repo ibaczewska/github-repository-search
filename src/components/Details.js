@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 class Details extends Component {
   state = {
-    repository: { name: '' },
+    repository: '',
     query: ''
   }
-
   componentDidMount() {
     var repositoryId = this.props.match.params.id
     this.setState({ query: repositoryId })
