@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './Details.css'
 import {
   Col,
   Button,
@@ -35,9 +36,8 @@ class Details extends Component {
   render() {
     return (
       <div>
-        <Col md='6' lg='12'>
-          <Card
-            style={{ width: '80%' }}>
+        <Col md='12' lg='12'>
+          <Card className='details__card'>
             <Card.Header>
               <a
                 href={

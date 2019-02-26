@@ -5,8 +5,8 @@ import {
   Switch,
   Link
 } from 'react-router-dom'
-import Results from './views/Results'
-import Details from './views/Details'
+import Results from './views/Results/Results'
+import Details from './views/Details/Details'
 import logo from '../src/assets/GitHub-icon.png'
 import Button from 'react-bootstrap/Button'
 import './App.css'
@@ -65,7 +65,7 @@ class App extends Component {
                 <Form inline>
                   <FormControl
                     type='text'
-                    placeholder='Search'
+                    placeholder='Search repository'
                     className='mr-sm-2'
                     onChange={event =>
                       this.handleInputChange(
@@ -84,12 +84,12 @@ class App extends Component {
                       this.state.query
                     }>
                     <Button
-                      variant='outline-success'
+                      variant='primary'
                       onClick={
                         this
                           .handleClickChange
                       }>
-                      Search repository
+                      Search
                     </Button>
                   </Link>
                 </Form>

@@ -1,0 +1,34 @@
+.results__card {
+  min-height: 350px;
+  margin: 30px 8px 10px;
+  text-align: center;
+}
+
+.results__header {
+  min-height: 40px;
+  padding: 10px !important;
+}
+
+.results__header a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #0069d9;
+}
+
+.results__header a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.results__img {
+  width: 120px;
+}
+
+.results__button {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.results__badge {
+  margin-left: 10px;
+}

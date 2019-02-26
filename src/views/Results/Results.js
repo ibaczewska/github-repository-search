@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import './Results.css'
 import {
   Col,
   Button,
   Card,
-  Figure
+  Figure,
+  Badge
 } from 'react-bootstrap'
+import Octicon, {
+  markGithub,
+  person,
+  star,
+  code
+} from 'octicons-react'
+
 class Results extends Component {
   state = {
     repositories: [],
@@ -59,30 +68,25 @@ class Results extends Component {
           sm='6'
           md='4'
           lg='3'>
-          <Card
-            style={{
-              minHeight: 495,
-              margin: '30px 8px 10px'
-            }}>
-            <Card.Header>
-              <a
-                href={`${
-                  repository.html_url
-                }`}>{`${
-                repository.name
-              }`}</a>
+          <Card className='results__card'>
+            <Card.Header className='results__header'>
+              <Badge>
+                <Octicon
+                  icon={markGithub}
+                />
+                <a
+                  href={`${
+                    repository.html_url
+                  }`}>
+                  {' '}
+                  {`${repository.name}`}
+                </a>
+              </Badge>
             </Card.Header>
             <Card.Body>
               <Figure>
                 <Figure.Image
-                  width={200}
-                  style={{
-                    margin: '0 auto',
-                    textAlign: 'center',
-                    justifyContent:
-                      'center',
-                    alignItems: 'center'
-                  }}
+                  className='results__img'
                   alt='avatar'
                   src={`${
                     repository.owner
@@ -98,28 +102,42 @@ class Results extends Component {
                 style={{ width: '10%' }}
               /> */}
               <Card.Title>
-                Owner:{' '}
-                {`${
-                  repository.owner.login
-                }`}
+                <Badge variant='light'>
+                  <Octicon
+                    icon={person}
+                  />{' '}
+                  {`${
+                    repository.owner
+                      .login
+                  }`}
+                </Badge>
               </Card.Title>
               <Card.Text>
-                Stars: {``}
-                {`${
-                  repository.stargazers_count
-                }`}
-              </Card.Text>
-              <Card.Text>
-                Language: {``}
-                {`${
-                  repository.language
-                }`}
+                <Badge variant='warning'>
+                  {' '}
+                  <Octicon
+                    icon={star}
+                  />
+                  {`${
+                    repository.stargazers_count
+                  }`}
+                </Badge>
+                <Badge
+                  variant='danger'
+                  className='results__badge'>
+                  <Octicon
+                    icon={code}
+                  />{' '}
+                  {`${
+                    repository.language
+                  }`}
+                </Badge>
               </Card.Text>
               <Link
                 to={`/details/${
                   repository.id
                 }`}>
-                <Button>
+                <Button className='results__button'>
                   SHOW DETAILS
                 </Button>
               </Link>
