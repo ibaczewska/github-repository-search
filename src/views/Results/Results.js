@@ -2,15 +2,25 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import './Results.css'
-import { Col, Button, Card, Figure, Badge } from 'react-bootstrap'
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Card,
+  Figure,
+  Badge,
+  Pagination
+} from 'react-bootstrap'
 import Octicon, { markGithub, person, star, code } from 'octicons-react'
 import Spinner from '../../components/Spinner/Spinner'
 
 class Results extends Component {
   state = {
     repositories: [],
-    query: '',
-    loading: false
+    currentPage: 1,
+    repositoriesPerPage: 8,
+    active: 1
   }
 
   componentDidMount() {
@@ -20,7 +30,11 @@ class Results extends Component {
   componentDidUpdate() {
     this.loadRepositories()
   }
-
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    })
+  }
   loadRepositories = () => {
     const query = this.props.match.params.query
     if (query !== this.state.query) {
@@ -34,8 +48,7 @@ class Results extends Component {
             repository.name.toLowerCase().includes(query.toLowerCase())
           )
           this.setState({
-            repositories: filtered,
-            loading: false
+            repositories: filtered
           })
         })
         .catch(error => console.log(error))
@@ -43,14 +56,16 @@ class Results extends Component {
   }
 
   render() {
-    if (!this.state.repositories.length) {
-      return (
-        <>
-          <Spinner />
-        </>
-      )
-    }
-    const repositoryItem = this.state.repositories.map(repository => {
+    const { repositories, currentPage, repositoriesPerPage } = this.state
+
+    const indexOfLastRepository = currentPage * repositoriesPerPage
+    const indexOfFirstRepository = indexOfLastRepository - repositoriesPerPage
+    const currentRepository = repositories.slice(
+      indexOfFirstRepository,
+      indexOfLastRepository
+    )
+
+    const renderRepositories = currentRepository.map(repository => {
       return (
         <Col key={repository.id} xs='12' sm='6' md='4' lg='3'>
           <Card className='results__card'>
@@ -91,7 +106,49 @@ class Results extends Component {
         </Col>
       )
     })
-    return <>{repositoryItem}</>
+    // Logic for displaying page numbers
+    const pageNumbers = []
+    for (
+      let i = 1;
+      i <= Math.ceil(repositories.length / repositoriesPerPage);
+      i++
+    ) {
+      pageNumbers.push(i)
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <Pagination.Item
+          key={number}
+          id={number}
+          active={number === this.state.active}
+          onClick={event => this.handleClick(event)}
+        >
+          {number}
+        </Pagination.Item>
+      )
+    })
+    //spinner
+    if (!repositories.length) {
+      return (
+        <>
+          <Spinner />
+        </>
+      )
+    } else
+      return (
+        <>
+          {renderRepositories}
+          <Container>
+            <Row className='results__pagination'>
+              <Col xs={1} md={5} />
+              <Col xs={10} md={7}>
+                <Pagination id='page-numbers'>{renderPageNumbers}</Pagination>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      )
   }
 }
 

@@ -46,3 +46,13 @@
 .badge {
   font-size: 80% !important;
 }
+
+.results__pagination {
+  margin: 20px auto 0;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .results__card {
+    min-height: 380px;
+  }
+}

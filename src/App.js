@@ -35,7 +35,12 @@ class App extends Component {
         <Row>
           <Router>
             <Col xs={12}>
-              <Navbar bg='light' className='navbar__custom' expand='lg'>
+              <Navbar
+                sticky='top'
+                bg='light'
+                className='navbar__custom'
+                expand='lg'
+              >
                 <img
                   src={logo}
                   alt='logo'
