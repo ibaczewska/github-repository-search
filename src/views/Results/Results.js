@@ -19,8 +19,7 @@ class Results extends Component {
   state = {
     repositories: [],
     currentPage: 1,
-    repositoriesPerPage: 8,
-    active: 1
+    repositoriesPerPage: 8
   }
 
   componentDidMount() {
@@ -121,7 +120,7 @@ class Results extends Component {
         <Pagination.Item
           key={number}
           id={number}
-          active={number === this.state.active}
+          active={number === currentPage}
           onClick={event => this.handleClick(event)}
         >
           {number}

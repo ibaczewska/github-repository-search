@@ -6,7 +6,7 @@ import logo from '../src/assets/GitHub-icon.png'
 import Button from 'react-bootstrap/Button'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col, Navbar, Form, FormControl } from 'react-bootstrap'
+import { Container, Row, Col, Navbar, FormControl } from 'react-bootstrap'
 
 class App extends Component {
   state = {
@@ -23,18 +23,18 @@ class App extends Component {
       query: this.state.query
     })
   }
-  // keyPress = event => {
-  //   if (event.key === 'Enter') {
-  //     this.handleClickChange()
-  //     window.location.href = `/results/${this.state.query}`
-  //   }
-  // }
+  keyPress = event => {
+    if (event.key === 'Enter') {
+      this.handleClickChange()
+      window.location.href = `/results/${this.state.query}`
+    }
+  }
   render() {
     return (
       <Container fluid={true}>
         <Row>
           <Router>
-            <Col xs={12}>
+            <Col xs={12} className='navbar__custom__col'>
               <Navbar
                 sticky='top'
                 bg='light'
@@ -49,22 +49,21 @@ class App extends Component {
                 />
                 <Navbar.Brand href='/'>
                   {' '}
-                  <h6>Repository Search</h6>
+                  <h1>Repository Search</h1>
                 </Navbar.Brand>
-                <Form inline>
-                  <FormControl
-                    type='text'
-                    placeholder='Search repository'
-                    className='mr-sm-2'
-                    onChange={event => this.handleInputChange(event)}
-                    // onKeyPress={event => this.keyPress(event)}
-                  />
-                  <Link to={'/results/' + this.state.query}>
-                    <Button variant='primary' onClick={this.handleClickChange}>
-                      Search
-                    </Button>
-                  </Link>
-                </Form>
+
+                <FormControl
+                  type='text'
+                  placeholder='Search repository'
+                  className='mr-sm-2'
+                  onChange={event => this.handleInputChange(event)}
+                  onKeyPress={event => this.keyPress(event)}
+                />
+                <Link to={'/results/' + this.state.query}>
+                  <Button variant='primary' onClick={this.handleClickChange}>
+                    Search
+                  </Button>
+                </Link>
               </Navbar>
               <Container>
                 <Row>
