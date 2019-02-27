@@ -7,6 +7,16 @@
 .results__header {
   min-height: 40px;
   padding: 10px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.results__header:hover {
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
 }
 
 .results__header a {

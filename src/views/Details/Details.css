@@ -1,5 +1,8 @@
 .details__card {
   width: 100%;
-  min-width: 1200;
   margin: 20px 0;
+}
+
+.badge__details {
+  margin-right: 10px;
 }

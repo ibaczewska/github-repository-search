@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './Details.css'
-import { Col, Button, Card } from 'react-bootstrap'
+import { Col, Button, Card, Badge } from 'react-bootstrap'
+import Octicon, {
+  repoForked,
+  eye,
+  book,
+  thumbsup,
+  markGithub
+} from 'octicons-react'
 
 class Details extends Component {
   state = {
@@ -9,6 +16,10 @@ class Details extends Component {
     query: ''
   }
   componentDidMount() {
+    this.loadRepositoryDetails()
+  }
+
+  loadRepositoryDetails = () => {
     var repositoryId = this.props.match.params.id
     this.setState({
       query: repositoryId
@@ -27,36 +38,41 @@ class Details extends Component {
 
   render() {
     return (
-      <div>
-        <Col md='12' lg='12'>
-          <Card className='details__card'>
-            <Card.Header>
-              <a href={this.state.repository.html_url}>
+      <Col md='12' lg='12'>
+        <Card className='details__card'>
+          <Card.Header>
+            <Badge>
+              <Octicon icon={markGithub} />
+              <a href={`${this.state.repository.html_url}`}>
                 {' '}
-                {this.state.repository.name}
+                {`${this.state.repository.name}`}
               </a>
-            </Card.Header>
-            <Card.Body>
-              {/* <Card.Img
-                variant='top'
-                src={this.state.repository.owner.avatar_url}
-                title='avatar'
-                alt=''
-                style={{ width: '10%' }}
-              /> */}
-              {/* <Card.Title>{this.state.repository.owner.login}</Card.Title> */}
-              <Card.Text>
-                Description:{' '}
-                {this.state.repository.description || 'No description'}
-                Number of forks:
-                {this.state.repository.forks_count ||
-                  'No one forks this repository'}
-              </Card.Text>
-              <Button onClick={this.props.history.goBack}>BACK</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </div>
+            </Badge>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              <Card.Title>Description</Card.Title>
+              <Octicon icon={book} />{' '}
+              {this.state.repository.description || 'No description'}
+            </Card.Text>
+            <Card.Text>
+              <Badge className='badge__details' variant='secondary'>
+                <Octicon icon={repoForked} />{' '}
+                {this.state.repository.forks_count || '0'}
+              </Badge>
+              <Badge className='badge__details' variant='info'>
+                <Octicon icon={eye} />{' '}
+                {this.state.repository.watchers_count || '0'}
+              </Badge>
+              <Badge className='badge__details' variant='success'>
+                <Octicon icon={thumbsup} />{' '}
+                {this.state.repository.subscribers_count || '0'}
+              </Badge>
+            </Card.Text>
+            <Button onClick={this.props.history.goBack}>BACK</Button>
+          </Card.Body>
+        </Card>
+      </Col>
     )
   }
 }

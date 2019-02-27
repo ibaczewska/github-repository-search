@@ -22,20 +22,25 @@ class App extends Component {
       query: this.state.query
     })
   }
-  keyPress = event => {
-    if (event.key === 'Enter') {
-      this.handleClickChange()
-      window.location.href = `/results/${this.state.query}`
-    }
-  }
+  // keyPress = event => {
+  //   if (event.key === 'Enter') {
+  //     this.handleClickChange()
+  //     window.location.href = `/results/${this.state.query}`
+  //   }
+  // }
   render() {
     return (
       <Container fluid={true}>
         <Row>
           <Router>
             <Col>
-              <Navbar bg='light' expand='lg'>
-                <img src={logo} alt='logo' title='logo' />
+              <Navbar bg='light' className='navbar__custom' expand='lg'>
+                <img
+                  src={logo}
+                  alt='logo'
+                  title='logo'
+                  className='navbar__logo'
+                />
                 <Navbar.Brand href='/'>
                   {' '}
                   <h6>Repository Search</h6>
@@ -46,7 +51,7 @@ class App extends Component {
                     placeholder='Search repository'
                     className='mr-sm-2'
                     onChange={event => this.handleInputChange(event)}
-                    onKeyPress={event => this.keyPress(event)}
+                    // onKeyPress={event => this.keyPress(event)}
                   />
                   <Link to={'/results/' + this.state.query}>
                     <Button variant='primary' onClick={this.handleClickChange}>

@@ -10,29 +10,37 @@ class Results extends Component {
     repositories: [],
     query: ''
   }
-  render() {
-    var repositoryName = this.props.match.params.query
-    if (repositoryName !== this.state.query) {
-      this.setState({
-        query: repositoryName
-      })
+
+  componentDidMount() {
+    this.loadRepositories()
+  }
+
+  componentDidUpdate() {
+    this.loadRepositories()
+  }
+
+  loadRepositories = () => {
+    const query = this.props.match.params.query
+    if (query !== this.state.query) {
+      this.setState({ query: query })
       const API_URL = 'https://api.github.com/search/repositories'
+
       axios
-        .get(`${API_URL}?q=${repositoryName}`)
+        .get(`${API_URL}?q=${query}`)
         .then(response => response.data)
         .then(data => {
           let filtered = data.items.filter(repository =>
-            repository.name.toLowerCase().includes(repositoryName)
+            repository.name.toLowerCase().includes(query.toLowerCase())
           )
 
           console.log('filtered: ' + filtered)
-
-          this.setState({
-            repositories: filtered
-          })
+          this.setState({ repositories: filtered })
         })
         .catch(error => console.log(error))
     }
+  }
+
+  render() {
     return this.state.repositories.map(repository => (
       <Col key={repository.id} xs='12' sm='6' md='4' lg='3'>
         <Card className='results__card'>
@@ -50,13 +58,6 @@ class Results extends Component {
                 src={`${repository.owner.avatar_url}`}
               />
             </Figure>
-            {/* <Card.Img
-                variant='top'
-                src={`${repository.owner.avatar_url}`}
-                title='avatar'
-                alt=''
-                style={{ width: '10%' }}
-              /> */}
             <Card.Title>
               <Badge variant='light'>
                 <Octicon icon={person} /> {`${repository.owner.login}`}
