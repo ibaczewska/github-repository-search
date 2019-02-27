@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/GitHub-icon.png'
 import Button from 'react-bootstrap/Button'
@@ -6,7 +7,7 @@ import './Navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, FormControl } from 'react-bootstrap'
 
-class Navbar extends Component {
+class MyNavbar extends Component {
   state = {
     query: '',
     loading: false
@@ -34,7 +35,7 @@ class Navbar extends Component {
           <img src={logo} alt='logo' title='logo' className='navbar__logo' />
           <Navbar.Brand href='https://ibaczewska.github.io/github-repository-search/'>
             {' '}
-            <h1>Repository Search</h1>
+            <h1>{this.props.title}</h1>
           </Navbar.Brand>
           <FormControl
             type='text'
@@ -45,7 +46,7 @@ class Navbar extends Component {
           />
           <Link to={'/results/' + this.state.query}>
             <Button variant='primary' onClick={this.handleClickChange}>
-              Search
+              {this.props.btnName}
             </Button>
           </Link>
         </Navbar>
@@ -53,5 +54,9 @@ class Navbar extends Component {
     )
   }
 }
+MyNavbar.propTypes = {
+  title: PropTypes.string,
+  btnName: PropTypes.string
+}
 
-export default Navbar
+export default MyNavbar

@@ -11,7 +11,7 @@ class Home extends Component {
     return (
       <Router>
         <Col xs={12} className='navbar__custom__col'>
-          <Navbar />
+          <Navbar title='Repository search' btnName='Search' />
           <Container>
             <Row>
               <Switch>
