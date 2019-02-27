@@ -15,6 +15,7 @@ class Details extends Component {
     repository: '',
     query: ''
   }
+
   componentDidMount() {
     this.loadRepositoryDetails()
   }
@@ -35,7 +36,6 @@ class Details extends Component {
       })
       .catch(error => console.log(error))
   }
-
   render() {
     return (
       <Col md='12' lg='12'>
