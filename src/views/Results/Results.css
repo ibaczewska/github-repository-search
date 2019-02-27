@@ -42,3 +42,7 @@
 .results__badge {
   margin-left: 10px;
 }
+
+.badge {
+  font-size: 80% !important;
+}

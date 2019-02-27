@@ -4,9 +4,15 @@
 
 .navbar__custom {
   margin-left: -20px;
-  width: 104%;
+  width: 112%;
 }
 
 .navbar__logo {
   margin-right: 10px;
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+  .navbar__custom {
+    width: 106%;
+  }
 }

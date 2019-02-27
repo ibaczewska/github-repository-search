@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import './Results.css'
 import { Col, Button, Card, Figure, Badge } from 'react-bootstrap'
 import Octicon, { markGithub, person, star, code } from 'octicons-react'
-
 class Results extends Component {
   state = {
     repositories: [],
@@ -32,14 +31,11 @@ class Results extends Component {
           let filtered = data.items.filter(repository =>
             repository.name.toLowerCase().includes(query.toLowerCase())
           )
-
-          console.log('filtered: ' + filtered)
           this.setState({ repositories: filtered })
         })
         .catch(error => console.log(error))
     }
   }
-
   render() {
     return this.state.repositories.map(repository => (
       <Col key={repository.id} xs='12' sm='6' md='4' lg='3'>

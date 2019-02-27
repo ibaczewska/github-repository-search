@@ -7,10 +7,12 @@ import Button from 'react-bootstrap/Button'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Row, Col, Navbar, Form, FormControl } from 'react-bootstrap'
+import Spinner from './components/Spinner'
 
 class App extends Component {
   state = {
-    query: ''
+    query: '',
+    loading: false
   }
   handleInputChange = event => {
     this.setState({
@@ -33,7 +35,7 @@ class App extends Component {
       <Container fluid={true}>
         <Row>
           <Router>
-            <Col>
+            <Col xs={12}>
               <Navbar bg='light' className='navbar__custom' expand='lg'>
                 <img
                   src={logo}
@@ -63,6 +65,7 @@ class App extends Component {
               <Container>
                 <Row>
                   <Switch>
+                    <Spinner />
                     <Route exact path='/results' component={Results} />
                     <Route exact path='/details/:id' component={Details} />
                     <Route exact path='/results/:query' component={Results} />

@@ -50,8 +50,8 @@ class Details extends Component {
             </Badge>
           </Card.Header>
           <Card.Body>
+            <Card.Title>Description</Card.Title>
             <Card.Text>
-              <Card.Title>Description</Card.Title>
               <Octicon icon={book} />{' '}
               {this.state.repository.description || 'No description'}
             </Card.Text>
