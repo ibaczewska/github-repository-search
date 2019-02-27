@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './Results.css'
 import { Col, Button, Card, Figure, Badge } from 'react-bootstrap'
 import Octicon, { markGithub, person, star, code } from 'octicons-react'
-// import Spinner from '../../components/Spinner'
+import Spinner from '../../components/Spinner/Spinner'
 
 class Results extends Component {
   state = {
@@ -43,7 +43,14 @@ class Results extends Component {
   }
 
   render() {
-    const Items = this.state.repositories.map(repository => {
+    if (!this.state.repositories.length) {
+      return (
+        <>
+          <Spinner />
+        </>
+      )
+    }
+    const repositoryItem = this.state.repositories.map(repository => {
       return (
         <Col key={repository.id} xs='12' sm='6' md='4' lg='3'>
           <Card className='results__card'>
@@ -84,7 +91,7 @@ class Results extends Component {
         </Col>
       )
     })
-    return <>{Items}</>
+    return <>{repositoryItem}</>
   }
 }
 
