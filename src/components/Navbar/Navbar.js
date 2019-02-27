@@ -6,7 +6,7 @@ import './Navbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, FormControl } from 'react-bootstrap'
 
-class Home extends Component {
+class Navbar extends Component {
   state = {
     query: '',
     loading: false
@@ -54,4 +54,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Navbar
