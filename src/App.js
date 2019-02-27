@@ -47,7 +47,7 @@ class App extends Component {
                   title='logo'
                   className='navbar__logo'
                 />
-                <Navbar.Brand href='/'>
+                <Navbar.Brand href='https://ibaczewska.github.io/github-repository-search/'>
                   {' '}
                   <h1>Repository Search</h1>
                 </Navbar.Brand>

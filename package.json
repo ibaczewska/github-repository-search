@@ -2,9 +2,11 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ibaczewska.github.io/github-repository-search",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.0.1",
     "octicons-react": "^0.17.12",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
@@ -18,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

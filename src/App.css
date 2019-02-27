@@ -7,11 +7,6 @@
   padding-right: 0 !important;
 }
 
-.navbar__custom {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 @media (max-width: 991px) {
   .navbar__custom button {
     margin-top: 15px;
