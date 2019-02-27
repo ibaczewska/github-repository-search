@@ -10,28 +10,28 @@ const Spinner = () => {
             className='spinner-grow text-primary spinner__custom'
             role='status'
           >
-            <span className='sr-only'>Loading...</span>
+            <span className='sr-only' />
           </div>
           <div
             className='spinner-grow text-success spinner__custom'
             role='status'
           >
-            <span className='sr-only'>Loading...</span>
+            <span className='sr-only' />
           </div>
           <div
             className='spinner-grow text-danger spinner__custom'
             role='status'
           >
-            <span className='sr-only'>Loading...</span>
+            <span className='sr-only' />
           </div>
           <div
             className='spinner-grow text-warning spinner__custom'
             role='status'
           >
-            <span className='sr-only'>Loading...</span>
+            <span className='sr-only' />
           </div>
           <div className='spinner-grow text-info spinner__custom' role='status'>
-            <span className='sr-only'>Loading...</span>
+            <span className='sr-only' />
           </div>
         </Col>
       </Row>
