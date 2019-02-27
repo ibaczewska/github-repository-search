@@ -54,6 +54,17 @@ class Results extends Component {
     }
   }
 
+  getPageNumbers = () => {
+    // Logic for displaying page numbers
+    const pageNumbers = []
+    let pagesCount = Math.ceil(
+      this.state.repositories.length / this.state.repositoriesPerPage
+    )
+    for (let i = 1; i <= pagesCount; i++) {
+      pageNumbers.push(i)
+    }
+    return pageNumbers
+  }
   render() {
     const { repositories, currentPage, repositoriesPerPage } = this.state
 
@@ -105,17 +116,8 @@ class Results extends Component {
         </Col>
       )
     })
-    // Logic for displaying page numbers
-    const pageNumbers = []
-    for (
-      let i = 1;
-      i <= Math.ceil(repositories.length / repositoriesPerPage);
-      i++
-    ) {
-      pageNumbers.push(i)
-    }
 
-    const renderPageNumbers = pageNumbers.map(number => {
+    const renderPageNumbers = this.getPageNumbers().map(number => {
       return (
         <Pagination.Item
           key={number}
