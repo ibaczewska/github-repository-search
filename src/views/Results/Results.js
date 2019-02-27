@@ -142,8 +142,8 @@ class Results extends Component {
           {renderRepositories}
           <Container>
             <Row className='results__pagination'>
-              <Col xs={1} md={5} />
-              <Col xs={10} md={7}>
+              <Col xs={4} md={5} />
+              <Col xs={8} md={7}>
                 <Pagination id='page-numbers'>{renderPageNumbers}</Pagination>
               </Col>
             </Row>

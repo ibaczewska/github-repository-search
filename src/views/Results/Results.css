@@ -1,5 +1,5 @@
 .results__card {
-  min-height: 350px;
+  min-height: 380px;
   margin: 30px 8px 10px;
   text-align: center;
 }
@@ -35,8 +35,7 @@
 }
 
 .results__button {
-  margin: 0 auto;
-  text-align: left;
+  margin: 20px auto 0;
 }
 
 .results__badge {
@@ -51,8 +50,8 @@
   margin: 20px auto 0;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (max-width: 576px) {
   .results__card {
-    min-height: 380px;
+    min-height: 350px;
   }
 }
