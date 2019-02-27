@@ -1,24 +1,12 @@
 import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Results from './views/Results/Results'
 import Details from './views/Details/Details'
 import logo from '../src/assets/GitHub-icon.png'
 import Button from 'react-bootstrap/Button'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {
-  Container,
-  Row,
-  Col,
-  Navbar,
-  Form,
-  FormControl
-} from 'react-bootstrap'
+import { Container, Row, Col, Navbar, Form, FormControl } from 'react-bootstrap'
 
 class App extends Component {
   state = {
@@ -37,9 +25,7 @@ class App extends Component {
   keyPress = event => {
     if (event.key === 'Enter') {
       this.handleClickChange()
-      window.location.href = `/results/${
-        this.state.query
-      }`
+      window.location.href = `/results/${this.state.query}`
     }
   }
   render() {
@@ -48,47 +34,22 @@ class App extends Component {
         <Row>
           <Router>
             <Col>
-              <Navbar
-                bg='light'
-                expand='lg'>
-                <img
-                  src={logo}
-                  alt='logo'
-                  title='logo'
-                />
+              <Navbar bg='light' expand='lg'>
+                <img src={logo} alt='logo' title='logo' />
                 <Navbar.Brand href='/'>
                   {' '}
-                  <h6>
-                    Repository Search
-                  </h6>
+                  <h6>Repository Search</h6>
                 </Navbar.Brand>
                 <Form inline>
                   <FormControl
                     type='text'
                     placeholder='Search repository'
                     className='mr-sm-2'
-                    onChange={event =>
-                      this.handleInputChange(
-                        event
-                      )
-                    }
-                    onKeyPress={event =>
-                      this.keyPress(
-                        event
-                      )
-                    }
+                    onChange={event => this.handleInputChange(event)}
+                    onKeyPress={event => this.keyPress(event)}
                   />
-                  <Link
-                    to={
-                      '/results/' +
-                      this.state.query
-                    }>
-                    <Button
-                      variant='primary'
-                      onClick={
-                        this
-                          .handleClickChange
-                      }>
+                  <Link to={'/results/' + this.state.query}>
+                    <Button variant='primary' onClick={this.handleClickChange}>
                       Search
                     </Button>
                   </Link>
@@ -97,27 +58,9 @@ class App extends Component {
               <Container>
                 <Row>
                   <Switch>
-                    <Route
-                      exact
-                      path='/results'
-                      component={
-                        Results
-                      }
-                    />
-                    <Route
-                      exact
-                      path='/details/:id'
-                      component={
-                        Details
-                      }
-                    />
-                    <Route
-                      exact
-                      path='/results/:query'
-                      component={
-                        Results
-                      }
-                    />
+                    <Route exact path='/results' component={Results} />
+                    <Route exact path='/details/:id' component={Details} />
+                    <Route exact path='/results/:query' component={Results} />
                   </Switch>
                 </Row>
               </Container>

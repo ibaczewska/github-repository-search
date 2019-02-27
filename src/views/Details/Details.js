@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './Details.css'
-import {
-  Col,
-  Button,
-  Card
-} from 'react-bootstrap'
+import { Col, Button, Card } from 'react-bootstrap'
 
 class Details extends Component {
   state = {
@@ -13,13 +9,11 @@ class Details extends Component {
     query: ''
   }
   componentDidMount() {
-    var repositoryId = this.props.match
-      .params.id
+    var repositoryId = this.props.match.params.id
     this.setState({
       query: repositoryId
     })
-    const API_URL =
-      'https://api.github.com/repositories'
+    const API_URL = 'https://api.github.com/repositories'
     axios
       .get(`${API_URL}/${repositoryId}`)
       .then(response => response.data)
@@ -28,9 +22,7 @@ class Details extends Component {
           repository: data
         })
       })
-      .catch(error =>
-        console.log(error)
-      )
+      .catch(error => console.log(error))
   }
 
   render() {
@@ -39,16 +31,9 @@ class Details extends Component {
         <Col md='12' lg='12'>
           <Card className='details__card'>
             <Card.Header>
-              <a
-                href={
-                  this.state.repository
-                    .html_url
-                }>
+              <a href={this.state.repository.html_url}>
                 {' '}
-                {
-                  this.state.repository
-                    .name
-                }
+                {this.state.repository.name}
               </a>
             </Card.Header>
             <Card.Body>
@@ -62,21 +47,12 @@ class Details extends Component {
               {/* <Card.Title>{this.state.repository.owner.login}</Card.Title> */}
               <Card.Text>
                 Description:{' '}
-                {this.state.repository
-                  .description ||
-                  'No description'}
+                {this.state.repository.description || 'No description'}
                 Number of forks:
-                {this.state.repository
-                  .forks_count ||
+                {this.state.repository.forks_count ||
                   'No one forks this repository'}
               </Card.Text>
-              <Button
-                onClick={
-                  this.props.history
-                    .goBack
-                }>
-                BACK
-              </Button>
+              <Button onClick={this.props.history.goBack}>BACK</Button>
             </Card.Body>
           </Card>
         </Col>
